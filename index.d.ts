@@ -1,19 +1,19 @@
 // Type definitions for google-assistant v0.5.3
 
-type AuthConfig = {
+export interface AuthConfig {
     keyFilePath: string;
     savedTokensPath: string;
     tokenInput?(processTokens: any): void;
 };
 
-type AudioConfig = {
+export interface AudioConfig {
     encodingOut?: "LINEAR16" | "MP3" | "OPUS_IN_OGG";
     sampleRateOut?: number;
     encodingIn?: "LINEAR16" | "FLAC";
     sampleRateIn?: number;
 };
 
-type ConversationConfig = {
+export interface ConversationConfig {
     audio?: AudioConfig;
     textQuery?: string;
     deviceId?: string;
@@ -24,26 +24,26 @@ type ConversationConfig = {
     screen?: ScreenConfig;
 };
 
-type DeviceLocation = {
+export interface DeviceLocation {
     coordinates: { latitude: number; longitude: number };
 };
 
-type ScreenConfig = { isOn: boolean };
+export type ScreenConfig = { isOn: boolean };
 
-declare class EventEmitter {
+export declare class EventEmitter {
     public emit(type: string, payload?: any): any;
     public on(type: string, handler: Function): any;
 }
 
-declare class Conversation extends EventEmitter {
+export declare class Conversation extends EventEmitter {
     constructor(config: ConversationConfig);
     public write(bytes: Uint8Array): void;
     public end(): void;
 }
 
-declare class Assistant {}
+export declare class Assistant {}
 
-declare class GoogleAssistant extends EventEmitter {
+export default class GoogleAssistant extends EventEmitter {
     constructor(
         authConfig: AuthConfig,
         callback?: (callbackArg: Assistant | Error) => void
@@ -54,5 +54,3 @@ declare class GoogleAssistant extends EventEmitter {
         callback?: (callbackArg: Conversation | Error) => void
     ): void;
 }
-
-export = GoogleAssistant;
