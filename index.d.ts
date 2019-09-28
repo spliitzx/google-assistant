@@ -43,7 +43,7 @@ export declare class Conversation extends EventEmitter {
 
 export declare class Assistant {}
 
-export default class GoogleAssistant extends EventEmitter {
+export declare class GoogleAssistant extends EventEmitter {
     constructor(
         authConfig: AuthConfig,
         callback?: (callbackArg: Assistant | Error) => void
